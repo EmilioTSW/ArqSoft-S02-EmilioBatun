@@ -16,6 +16,12 @@
             MostrarAhorcado();
 
             Console.WriteLine($"Intentos restantes: {_motor.IntentosRestantes}");
+
+            if (_motor.MostrarPista)
+            {
+                Console.WriteLine($"Pista: la palabra empieza con '{_motor.PalabraSecreta[0]}'");
+            }
+
             Console.WriteLine($"Letras usadas: {string.Join(", ", _motor.LetrasUsadas)}");
 
             Console.Write("Palabra: ");
