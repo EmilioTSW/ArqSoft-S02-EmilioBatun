@@ -34,7 +34,7 @@ if (opcion == "1")
     ui.MostrarTablero();
 
     if (motor.Ganado())
-    {
+    { //hola
         ui.MostrarMensaje($"\n¡Ganaste! La palabra era: {motor.PalabraSecreta}");
     }
     else
