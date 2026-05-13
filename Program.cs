@@ -1,38 +1,97 @@
-﻿var repositorio = new Ahorcado.PalabrasEnMemoria();
+﻿using Ahorcado;
+using Ahorcado_Emilio;
 
-var motor = new Ahorcado.MotorAhorcado(repositorio);
-var ui = new Ahorcado.ConsolaUI(motor);
+Console.WriteLine("¿Qué juego quieres jugar?");
+Console.WriteLine("  1 — Ahorcado");
+Console.WriteLine("  2 — Viborita");
+Console.Write("Opción: ");
 
-Console.WriteLine("=== AHORCADO ===");
+var opcion = Console.ReadLine();
 
-while (!motor.Ganado() && !motor.Perdido())
+if (opcion == "1")
 {
-    ui.MostrarTablero();
+    var repositorio = new PalabrasEnMemoria();
+    var motor = new MotorAhorcado(repositorio);
+    var ui = new ConsolaUI(motor);
 
-    char letra = ui.PedirLetra();
+    Console.WriteLine("=== AHORCADO ===");
 
-    if (motor.LetraYaUsada(letra))
+    while (!motor.Ganado() && !motor.Perdido())
     {
-        ui.MostrarMensaje("Ya usaste esa letra.");
-        continue;
+        ui.MostrarTablero();
+
+        char letra = ui.PedirLetra();
+
+        if (motor.LetraYaUsada(letra))
+        {
+            ui.MostrarMensaje("Ya usaste esa letra.");
+            continue;
+        }
+
+        motor.RegistrarLetra(letra);
     }
 
-    motor.RegistrarLetra(letra);
+    ui.MostrarTablero();
+
+    if (motor.Ganado())
+    {
+        ui.MostrarMensaje($"\n¡Ganaste! La palabra era: {motor.PalabraSecreta}");
+    }
+    else
+    {
+        ui.MostrarMensaje($"\nPerdiste. La palabra era: {motor.PalabraSecreta}");
+    }
+
+    Console.WriteLine("\nPresiona cualquier tecla para salir...");
+    Console.ReadKey();
 }
-
-ui.MostrarTablero();
-
-if (motor.Ganado())
+else if (opcion == "2")
 {
-    ui.MostrarMensaje($"\n¡Ganaste! La palabra era: {motor.PalabraSecreta}");
+    var motor = new IMotorViborita();
+    var ui = new ConsolaUIViborita(motor);
+
+    Console.CursorVisible = false;
+
+    while (!motor.Ganado() && !motor.Perdido())
+    {
+        Console.Clear();
+
+        ui.MostrarTablero();
+
+        if (Console.KeyAvailable)
+        {
+            var tecla = Console.ReadKey(true).Key;
+
+            if (tecla == ConsoleKey.Q)
+                break;
+
+            motor.CambiarDireccion(tecla);
+        }
+
+        motor.Avanzar();
+
+        Thread.Sleep(150);
+    }
+
+    Console.Clear();
+
+    ui.MostrarTablero();
+
+    if (motor.Ganado())
+    {
+        ui.MostrarMensaje("\n¡Ganaste! Llegaste a 10 puntos.");
+    }
+    else
+    {
+        ui.MostrarMensaje("\nGame Over.");
+    }
+
+    Console.CursorVisible = true;
+
+    Console.WriteLine("\nPresiona cualquier tecla para salir...");
+    Console.ReadKey();
 }
 else
 {
-    ui.MostrarMensaje($"\nPerdiste. La palabra era: {motor.PalabraSecreta}");
-}
-
-if (ui.PreguntarOtraVez())
-{
-    var nuevoMotor = new Ahorcado.MotorAhorcado(repositorio);
-    var nuevaUI = new Ahorcado.ConsolaUI(nuevoMotor);
+    Console.WriteLine("Opción no válida.");
 }
