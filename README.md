@@ -1,1 +1,1 @@
-Hola
+El juego de ahorcado es un juego de palabras en el que una persona piensa una palabra secreta y la otra debe adivinarla letra por letra. Cuando el jugador menciona una letra correcta, esta se coloca en el lugar correspondiente dentro de la palabra, pero si la letra no existe, se cuenta como un error y se dibuja una parte de un muñeco ahorcado. El objetivo es descubrir la palabra antes de completar el dibujo del ahorcado. Es un juego divertido que ayuda a desarrollar el vocabulario, la memoria y la lógica.
