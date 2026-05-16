@@ -1,6 +1,2 @@
-# README de la viborita
-Este es el Redme de la viborita
--De que trata
--Que hicieron
--Como funciona
--Clausuka de IA: le pedi que me exlique paso a paso para hacer el programa y que me resuelva un error
+El juego de la viborita trata de controlar una serpiente que se mueve por la pantalla para comer comida y crecer poco a poco. En este proyecto hicimos un programa donde el jugador puede mover la viborita, sumar puntos cada vez que come y perder si choca con los bordes o consigo misma. El juego funciona leyendo las teclas que presiona el usuario para cambiar la dirección de la serpiente; mientras avanza, el programa actualiza su posición, genera comida en lugares aleatorios y revisa si hubo choque o si ganó puntos.
+Cláusula de IA: Para este proyecto utilicé inteligencia artificial como apoyo, pidiéndole que me explicara paso a paso cómo realizar el programa y que me ayudara a corregir un error que apareció durante el desarrollo.
